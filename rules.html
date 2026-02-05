@@ -3,92 +3,486 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QuiZmAn ルール</title>
+<title>ルール | QuiZmAn</title>
 
 <style>
-body{
-  font-family:sans-serif;
-  margin:0;
-  background:#111;
-  color:white;
-}
-header{
-  padding:26px 18px;
-  text-align:center;
-  font-size:32px;
-  font-weight:bold;
-}
-main{
-  max-width:900px;
-  margin:0 auto;
-  padding:0 18px 30px;
-}
-.card{
-  background:#1b1b1b;
-  border:1px solid #333;
-  border-radius:12px;
-  padding:16px;
-  margin:12px 0;
-}
-h2{
-  margin:0 0 10px;
-  font-size:20px;
-}
-ul,ol{ margin:8px 0 0 22px; }
-a{ color:#aaa; }
-.note{ color:#bbb; font-size:14px; }
+  :root{
+    --ink:#111;
+    --muted:#555;
+    --line:rgba(0,0,0,.10);
+    --card:#fff;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    background:#fff;
+    color:var(--ink);
+  }
+
+  /* ほんのり紙っぽい質感（控えめ） */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(900px 520px at 20% 10%, rgba(0,0,0,.03), transparent 60%),
+      radial-gradient(700px 520px at 80% 15%, rgba(0,0,0,.02), transparent 60%),
+      repeating-linear-gradient(0deg, rgba(0,0,0,.010), rgba(0,0,0,.010) 1px, transparent 1px, transparent 7px);
+    opacity:.8;
+  }
+
+  .wrap{
+    width:min(980px, calc(100% - 32px));
+    margin:0 auto;
+    padding:34px 0 40px;
+    position:relative;
+  }
+
+  header{
+    text-align:center;
+    margin-bottom:18px;
+  }
+
+  h1{
+    font-size:28px;
+    margin:0 0 6px;
+    letter-spacing:.02em;
+  }
+
+  .lead{
+    margin:0;
+    color:var(--muted);
+    line-height:1.7;
+    font-size:14px;
+  }
+
+  .toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:18px 0 14px;
+  }
+
+  .pill{
+    display:inline-block;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.85);
+    padding:8px 12px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:13px;
+  }
+
+  .btn{
+    border:1px solid var(--line);
+    background:#fff;
+    padding:10px 12px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:800;
+  }
+  .btn:hover{
+    box-shadow:0 10px 22px rgba(0,0,0,.08);
+    transform:translateY(-1px);
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 10px 26px rgba(0,0,0,.06);
+    margin:12px 0;
+  }
+
+  details{
+    border-radius:16px;
+    overflow:hidden;
+  }
+
+  details > summary{
+    list-style:none;
+    cursor:pointer;
+    padding:18px;
+    font-weight:900;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:rgba(255,255,255,.9);
+    box-shadow:0 10px 26px rgba(0,0,0,.05);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  details[open] > summary{
+    border-bottom-left-radius:0;
+    border-bottom-right-radius:0;
+  }
+  details > summary::-webkit-details-marker{ display:none; }
+
+  .sum-left{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    flex-wrap:wrap;
+  }
+  .tag{
+    font-size:12px;
+    font-weight:800;
+    color:#222;
+    border:1px solid var(--line);
+    background:#fff;
+    padding:6px 10px;
+    border-radius:999px;
+  }
+  .title{
+    font-size:18px;
+  }
+  .arrow{
+    font-size:14px;
+    color:var(--muted);
+    font-weight:800;
+  }
+
+  .content{
+    border:1px solid var(--line);
+    border-top:none;
+    border-bottom-left-radius:16px;
+    border-bottom-right-radius:16px;
+    background:#fff;
+    padding:18px;
+  }
+
+  h3{
+    margin:14px 0 8px;
+    font-size:15px;
+  }
+
+  .kv{
+    display:grid;
+    grid-template-columns: 220px 1fr;
+    gap:8px 12px;
+    margin-top:8px;
+  }
+  @media (max-width:640px){
+    .kv{ grid-template-columns:1fr; }
+  }
+  .k{
+    color:#222;
+    font-weight:900;
+  }
+  .v{
+    color:#222;
+    line-height:1.75;
+  }
+  .muted{ color:var(--muted); }
+
+  .judge{
+    margin:8px 0 0;
+    padding-left:18px;
+  }
+
+  .note{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
+  }
+
+  footer{
+    margin-top:22px;
+    text-align:center;
+    color:#777;
+    font-size:12px;
+  }
+
+  a{ color:#333; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+
 </style>
 </head>
 
 <body>
+<div class="wrap">
 
-<header>ルール</header>
-
-<main>
-
-<div class="card">
-  <h2>全体（雛形）</h2>
-  <p class="note">
-    ※ここは「仮の文章」です。方式が決まったら差し替えれば完成です。
+<header>
+  <h1>ルール</h1>
+  <p class="lead">
+    QuiZmAn の進行ルール。
   </p>
-  <ul>
-    <li>形式：ペーパー＋早押し（予定）</li>
-    <li>定員：未定</li>
-    <li>参加費：未定</li>
-  </ul>
+</header>
+
+<div class="toolbar">
+  <span class="pill">共通：限定問題終了時の判定基準＝ ○数 → ×の少なさ → 1○1×サドンデス</span>
+  <button class="btn" type="button" onclick="toggleAll()">すべて開く／閉じる</button>
 </div>
 
+<!-- 共通判定基準（明示） -->
 <div class="card">
-  <h2>当日の流れ（例）</h2>
-  <ol>
-    <li>開場・受付</li>
-    <li>ペーパークイズ</li>
-    <li>早押しラウンド（予選→準決勝→決勝 など）</li>
-    <li>表彰</li>
+  <h3>◆ 限定問題終了時の判定基準（全ラウンド共通）</h3>
+  <ol class="judge">
+    <li>○数が多い順</li>
+    <li>×が少ない順</li>
+    <li>1○1×サドンデス</li>
   </ol>
+  <p class="note">※失格者（×上限到達者）は判定対象外。</p>
 </div>
 
-<div class="card">
-  <h2>回答・判定（例）</h2>
-  <ul>
-    <li>早押しは「1人1答」</li>
-    <li>誤答ペナルティ：あり／なし（未定）</li>
-    <li>判定が難しい場合は主催判断（必要に応じて言い直しをお願いする場合があります）</li>
-  </ul>
-</div>
+<!-- 1R -->
+<details class="round" open>
+  <summary>
+    <span class="sum-left">
+      <span class="tag">1st Round</span>
+      <span class="title">5○2×クイズ（40人 → 20人）</span>
+    </span>
+    <span class="arrow">▼</span>
+  </summary>
+  <div class="content">
+    <div class="kv">
+      <div class="k">概要</div><div class="v">40名を4組に分け、早押しクイズを実施。</div>
+      <div class="k">勝ち抜け</div><div class="v">5○で勝ち抜け。各組上位5名（計20名）が2nd Round進出。</div>
+      <div class="k">誤答ルール</div><div class="v">2×で失格（失格者は判定対象外）。</div>
+      <div class="k">限定問題</div><div class="v">45問限定。</div>
+      <div class="k">◆ 限定問題終了時の判定基準</div>
+      <div class="v">
+        <ol class="judge">
+          <li>○数が多い順</li>
+          <li>×が少ない順</li>
+          <li>1○1×サドンデス</li>
+        </ol>
+      </div>
+      <div class="k">組み分け方法</div><div class="v">会場到着順に、ホワイトボードの組み分け表へ各自で記入して決定。</div>
+    </div>
+  </div>
+</details>
 
-<div class="card">
-  <h2>持ち物・注意</h2>
-  <ul>
-    <li>筆記用具</li>
-    <li>会場のルールに従ってください（飲食・撮影などは必要なら追記）</li>
-  </ul>
-</div>
+<!-- 2R -->
+<details class="round">
+  <summary>
+    <span class="sum-left">
+      <span class="tag">2nd Round</span>
+      <span class="title">7○3×クイズ（20人 → 8人）</span>
+    </span>
+    <span class="arrow">▼</span>
+  </summary>
+  <div class="content">
+    <div class="kv">
+      <div class="k">概要</div><div class="v">20名を4組に分け、早押しクイズを実施。</div>
+      <div class="k">勝ち抜け</div><div class="v">7○で勝ち抜け。各組2名（計8名）がSF-1進出。</div>
+      <div class="k">誤答ルール</div><div class="v">3×で失格（失格者は判定対象外）。</div>
+      <div class="k">限定問題</div><div class="v">45問限定。</div>
+      <div class="k">◆ 限定問題終了時の判定基準</div>
+      <div class="v">
+        <ol class="judge">
+          <li>○数が多い順</li>
+          <li>×が少ない順</li>
+          <li>1○1×サドンデス</li>
+        </ol>
+      </div>
+      <div class="k">組み分け方法</div>
+      <div class="v">
+        1st Round の「1抜け → 2抜け → 3抜け → 4抜け → 5抜け」の順に、所属組を選択。
+      </div>
+    </div>
+  </div>
+</details>
 
-<p style="text-align:center; margin-top:16px;">
+<!-- EX -->
+<details class="round">
+  <summary>
+    <span class="sum-left">
+      <span class="tag">Extra Round</span>
+      <span class="title">敗者復活戦：3○1×（敗退者 → 4人）</span>
+    </span>
+    <span class="arrow">▼</span>
+  </summary>
+  <div class="content">
+    <div class="kv">
+      <div class="k">概要</div><div class="v">これまでの敗退者32名による敗者復活戦。</div>
+      <div class="k">形式</div><div class="v">3○1×クイズ。</div>
+      <div class="k">組み分け</div>
+      <div class="v">
+        4組に分け、以下の順で構成。<br>
+        ・2nd Round 各組3位<br>
+        ・2nd Round 各組4位<br>
+        ・2nd Round 各組5位<br>
+        ・1st Round 敗退者（ランダム）
+      </div>
+      <div class="k">勝ち抜け</div><div class="v">各組1名（計4名）が SF-2 に進出します。</div>
+      <div class="k">限定問題</div><div class="v">20問限定</div>
+      <div class="k">◆ 限定問題終了時の判定基準</div>
+      <div class="v">
+        <ol class="judge">
+          <li>○数が多い順</li>
+          <li>×が少ない順</li>
+          <li>1○1×サドンデス</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- SF-1 -->
+<details class="round">
+  <summary>
+    <span class="sum-left">
+      <span class="tag">Semi Final 1</span>
+      <span class="title">9○4×（8人 → 3人）</span>
+    </span>
+    <span class="arrow">▼</span>
+  </summary>
+  <div class="content">
+    <div class="kv">
+      <div class="k">概要</div><div class="v">2nd Round 通過者8名による準決勝。</div>
+      <div class="k">勝ち抜け</div><div class="v">3名が勝ち抜け。</div>
+      <div class="k">誤答ルール</div><div class="v">4×で失格（失格者は判定対象外）。</div>
+      <div class="k">限定問題</div><div class="v">80問限定。</div>
+      <div class="k">◆ 限定問題終了時の判定基準</div>
+      <div class="v">
+        <ol class="judge">
+          <li>○数が多い順</li>
+          <li>×が少ない順</li>
+          <li>1○1×サドンデス</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- BONUS -->
+<details class="round">
+  <summary>
+    <span class="sum-left">
+      <span class="tag">Bonus Round</span>
+      <span class="title">じゃんけん大会（敗退者 → 1人）</span>
+    </span>
+    <span class="arrow">▼</span>
+  </summary>
+  <div class="content">
+    <div class="kv">
+      <div class="k">概要</div><div class="v">主催とのじゃんけんで実施。</div>
+      <div class="k">勝ち抜け</div><div class="v">最終勝者1名が SF-2 に進出。</div>
+      <div class="k">備考</div><div class="v">参加人数が5名以下になった時点で、参加者同士のじゃんけんへ移行。</div>
+    </div>
+  </div>
+</details>
+
+<!-- SF-2 -->
+<details class="round">
+  <summary>
+    <span class="sum-left">
+      <span class="tag">Semi Final 2</span>
+      <span class="title">7○3×（12人 → 2人）</span>
+    </span>
+    <span class="arrow">▼</span>
+  </summary>
+  <div class="content">
+    <div class="kv">
+      <div class="k">参加者</div>
+      <div class="v">
+        以下12名が参加します。<br>
+        ・SF-1 敗退者<br>
+        ・Extra Round 勝者<br>
+        ・Bonus Round 勝者
+      </div>
+      <div class="k">組み分け</div><div class="v">2組に分けて実施（SF-1順位等を基に決定予定）。</div>
+      <div class="k">勝ち抜け</div><div class="v">各組1名が勝ち抜け。</div>
+      <div class="k">限定問題</div><div class="v">40問限定</div>
+      <div class="k">◆ 限定問題終了時の判定基準</div>
+      <div class="v">
+        <ol class="judge">
+          <li>○数が多い順</li>
+          <li>×が少ない順</li>
+          <li>1○1×サドンデス</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- FINAL -->
+<details class="round">
+  <summary>
+    <span class="sum-left">
+      <span class="tag">Final</span>
+      <span class="title">QuiZmAn（5人 → 優勝）</span>
+    </span>
+    <span class="arrow">▼</span>
+  </summary>
+  <div class="content">
+    <div class="kv">
+      <div class="k">優勝条件</div><div class="v">①～③のセットを通じて ☆を2つ獲得した選手が優勝。</div>
+    </div>
+
+    <div class="card" style="box-shadow:none; margin:14px 0 0; border-radius:14px;">
+      <h3 style="margin:0 0 8px;">◆ Set①：7○3×</h3>
+      <div class="kv">
+        <div class="k">人数</div><div class="v">5名</div>
+        <div class="k">限定問題</div><div class="v">40問限定</div>
+        <div class="k">☆付与</div><div class="v">勝者1名に☆1個</div>
+        <div class="k">◆ 限定問題終了時の判定基準</div>
+        <div class="v">
+          <ol class="judge">
+            <li>○数が多い順</li>
+            <li>×が少ない順</li>
+            <li>1○1×サドンデス</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="box-shadow:none; margin:12px 0 0; border-radius:14px;">
+      <h3 style="margin:0 0 8px;">◆ Set②：7○3×</h3>
+      <div class="kv">
+        <div class="k">人数</div><div class="v">5名</div>
+        <div class="k">限定問題</div><div class="v">40問限定</div>
+        <div class="k">☆付与</div><div class="v">勝者1名に☆1個</div>
+        <div class="k">◆ 限定問題終了時の判定基準</div>
+        <div class="v">
+          <ol class="judge">
+            <li>○数が多い順</li>
+            <li>×が少ない順</li>
+            <li>1○1×サドンデス</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="box-shadow:none; margin:12px 0 0; border-radius:14px;">
+      <h3 style="margin:0 0 8px;">◆ Set③：タイマン（条件付き）</h3>
+      <p class="note" style="margin:0 0 10px;">☆保持者が2名となった場合のみ実施。</p>
+      <div class="kv">
+        <div class="k">勝利条件</div><div class="v">15ポイント先取</div>
+        <div class="k">ポイントルール</div>
+        <div class="v">
+          ・早押し正解：2pt<br>
+          ・誤答：相手に1pt付与＋読み切りサイドアウト<br>
+          ・サイドアウト正解：追加で1pt
+        </div>
+      </div>
+    </div>
+
+  </div>
+</details>
+
+<footer>
   <a href="index.html">トップへ戻る</a>
-</p>
+</footer>
 
-</main>
+</div>
+
+<script>
+  function toggleAll(){
+    const rounds = Array.from(document.querySelectorAll('details.round'));
+    const anyClosed = rounds.some(d => !d.open);
+    rounds.forEach(d => d.open = anyClosed);
+  }
+</script>
+
 </body>
 </html>
