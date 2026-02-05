@@ -6,53 +6,76 @@
 <title>QuiZmAn</title>
 
 <style>
+
 body{
-  font-family: sans-serif;
   margin:0;
-  background:#111;
+  font-family: 'Segoe UI', sans-serif;
+  background:linear-gradient(135deg,#111,#1b1b1b);
   color:white;
   text-align:center;
 }
 
+/* ===== ヘッダー ===== */
 header{
-  padding:40px;
-  font-size:40px;
-  font-weight:bold;
+  padding:50px 20px;
 }
 
-section{
-  padding:20px;
+.logo{
+  width:280px;
+  max-width:80%;
+}
+
+/* ===== メイン情報 ===== */
+
+.info{
+  font-size:20px;
+  margin:10px 0;
+}
+
+/* ===== ボタン ===== */
+
+nav{
+  margin-top:30px;
 }
 
 nav a{
   display:inline-block;
   margin:10px;
-  padding:10px 20px;
-  background:#444;
-  color:white;
+  padding:14px 28px;
+  font-size:18px;
+  font-weight:bold;
   text-decoration:none;
-  border-radius:8px;
+  border-radius:30px;
+  background:linear-gradient(45deg,#ffd500,#ff3b3b,#2ca7ff);
+  color:white;
+  transition:0.3s;
 }
 
 nav a:hover{
-  background:#666;
+  transform:scale(1.1);
+  box-shadow:0 0 20px #ff3b3b;
 }
+
+/* ===== フッター ===== */
+
+footer{
+  margin-top:60px;
+  padding:20px;
+  color:#888;
+  font-size:14px;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-QuiZmAn
+<img src="logo.png" class="logo">
 </header>
 
-<section>
-<h2>開催日</h2>
-<p>2026年4月5日</p>
-
-<h2>会場</h2>
-<p>新蒲田区民活動施設（カムカム新蒲田）</p>
-</section>
+<div class="info">📅 2026年4月5日</div>
+<div class="info">📍 新蒲田区民活動施設（カムカム新蒲田）</div>
 
 <nav>
 <a href="about.html">概要</a>
@@ -60,6 +83,10 @@ QuiZmAn
 <a href="samples.html">例題</a>
 <a href="entry.html">エントリー</a>
 </nav>
+
+<footer>
+© QuiZmAn 2026
+</footer>
 
 </body>
 </html>
