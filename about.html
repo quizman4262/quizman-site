@@ -3,47 +3,137 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QuiZmAn 概要</title>
+<title>大会概要 | QuiZmAn</title>
 
 <style>
-body{
-  font-family:sans-serif;
-  margin:0;
-  background:#111;
-  color:white;
-  text-align:center;
+
+:root{
+  --ink:#111;
+  --muted:#555;
+  --line:rgba(0,0,0,.10);
 }
 
-header{
-  padding:30px;
-  font-size:32px;
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background:#fff;
+  color:var(--ink);
+}
+
+.wrap{
+  width:min(900px, calc(100% - 32px));
+  margin:0 auto;
+  padding:40px 0;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.card{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:22px;
+  margin-bottom:18px;
+  background:white;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+
+h2{
+  margin-top:0;
+  font-size:20px;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:150px 1fr;
+  gap:12px;
+}
+
+.label{
   font-weight:bold;
 }
 
-section{
-  padding:20px;
+.note{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.back{
+  text-align:center;
+  margin-top:30px;
 }
 
 a{
-  color:#aaa;
+  color:#333;
+  text-decoration:none;
 }
+
+a:hover{
+  text-decoration:underline;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-大会概要
-</header>
+<div class="wrap">
 
-<section>
-<p>大会名：QuiZmAn</p>
-<p>開催日：2026年4月5日</p>
-<p>会場：新蒲田区民活動施設（カムカム新蒲田）</p>
-<p>形式：未定（早押しなど予定）</p>
-</section>
+<h1>大会概要</h1>
 
-<p><a href="index.html">トップへ戻る</a></p>
+<div class="card">
+  <div class="info-grid">
+    <div class="label">大会名</div><div>QuiZmAn</div>
+    <div class="label">開催日</div><div>2026年4月5日（日）</div>
+    <div class="label">開催時間</div><div>13:00 ～ 20:00（予定）</div>
+    <div class="label">会場</div><div>新蒲田区民活動施設（カムカム新蒲田）</div>
+    <div class="label">レギュレーション</div><div>フルオープン</div>
+    <div class="label">定員</div><div>40名</div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>コンセプト</h2>
+  <p class="note">
+    クイズで真剣勝負を楽しむ
+  </p>
+</div>
+
+<div class="card">
+  <h2>問題傾向</h2>
+  <p class="note">
+    短文基本の難易度上限をボリュームゾーンとし、そこから易・難の両方向へ緩やかに広がる問題群
+  </p>
+</div>
+
+<div class="card">
+  <h2>注意事項</h2>
+
+  <p class="note">
+  ■ 運営体制について<br>
+  当日は2部屋展開で進行予定ですが、主催者1名での運営となるため、別室で待機時間が発生するタイミングがあります。あらかじめご了承ください。
+  </p>
+
+  <br>
+
+  <p class="note">
+  ■ 本大会の開催経緯について<br>
+  本大会は、開催前月に実施予定の20名向け企画形式の放送で使用する問題を基に、より多くの方にクイズ大会の場を提供したいという思いから企画されたものです。<br><br>
+
+  本大会は事前エントリー制により参加者を40名に絞らせて頂きますが、20名企画の放送を事前に実施する点については、開催経緯をご理解いただけますと幸いです。<br><br>
+
+  また主催としては、20名企画と本大会のいずれも大切に運営したいと考えております。記録集や当日の実況等も含め、双方を同等に扱う予定ですので、あわせてご理解のほどよろしくお願いいたします。
+  </p>
+
+</div>
+
+<div class="back">
+<a href="index.html">トップへ戻る</a>
+</div>
+
+</div>
 
 </body>
 </html>
