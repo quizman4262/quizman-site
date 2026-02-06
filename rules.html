@@ -60,6 +60,36 @@
     font-size:14px;
   }
 
+  .group-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:8px;
+  font-size:14px;
+}
+
+.group-table th,
+.group-table td{
+  border:1px solid var(--line);
+  padding:8px 10px;
+  text-align:left;
+}
+
+.group-table th{
+  background:rgba(0,0,0,.04);
+  font-weight:900;
+}
+
+.group-table tr:nth-child(even){
+  background:rgba(0,0,0,.015);
+}
+
+/* スマホ用 */
+@media (max-width:640px){
+  .group-table{
+    font-size:13px;
+  }
+}
+
   .toolbar{
     display:flex;
     justify-content:space-between;
@@ -267,7 +297,7 @@
       </div>
       <div class="k">組み分け方法</div>
       <div class="v">
-        1st Round の「1抜け → 2抜け → 3抜け → 4抜け → 5抜け」の順に、所属組を選択。
+        1st Round の結果をもとに「1set目1抜け → 2set目1抜け → 3set目1抜け →4set目1抜け → 1set目2抜け → ……」という順番で所属組を選択。
       </div>
     </div>
   </div>
@@ -278,32 +308,71 @@
   <summary>
     <span class="sum-left">
       <span class="tag">Extra Round</span>
-      <span class="title">敗者復活戦：3○1×（敗退者 → 4人）</span>
+      <span class="title">3○1×（敗退者 → 4人）</span>
     </span>
     <span class="arrow">▼</span>
   </summary>
   <div class="content">
     <div class="kv">
-      <div class="k">概要</div><div class="v">これまでの敗退者32名による敗者復活戦。</div>
-      <div class="k">形式</div><div class="v">3○1×クイズ。</div>
-      <div class="k">組み分け</div>
-      <div class="v">
-        4組に分け、以下の順で構成。<br>
-        ・2nd Round 各組3位<br>
-        ・2nd Round 各組4位<br>
-        ・2nd Round 各組5位<br>
-        ・1st Round 敗退者（ランダム）
-      </div>
-      <div class="k">勝ち抜け</div><div class="v">各組1名（計4名）が SF-2 に進出します。</div>
-      <div class="k">限定問題</div><div class="v">20問限定</div>
+      <div class="k">概要</div><div class="v">これまでの敗退者32名を4組に分けて実施する敗者復活戦。</div>
+      <div class="k">勝ち抜け</div><div class="v">3○で勝ち抜け。各組1名（計4名）がSF-2進出。</div>
+      <div class="k">誤答ルール</div><div class="v">1×で失格（失格者は判定対象外）。</div>
+      <div class="k">限定問題</div><div class="v">20問限定。</div>
       <div class="k">◆ 限定問題終了時の判定基準</div>
       <div class="v">
         <ol class="judge">
           <li>○数が多い順</li>
-          <li>×が少ない順</li>
           <li>1○1×サドンデス</li>
         </ol>
       </div>
+<div class="k">組み分け方法</div>
+<div class="v">
+
+<table class="group-table">
+<thead>
+<tr>
+<th>組</th>
+<th>参加者</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1組</td>
+<td>
+2R1組目3位、2R2組目4位、2R3組目5位、<br>
+1R1組目6位、1R2組目7位、1R3組目8位、1R4組目9位、1R1組目10位
+</td>
+</tr>
+
+<tr>
+<td>2組</td>
+<td>
+2R2組目3位、2R3組目4位、2R4組目5位、<br>
+1R2組目6位、1R3組目7位、1R4組目8位、1R1組目9位、1R2組目10位
+</td>
+</tr>
+
+<tr>
+<td>3組</td>
+<td>
+2R3組目3位、2R4組目4位、2R1組目5位、<br>
+1R3組目6位、1R4組目7位、1R1組目8位、1R2組目9位、1R3組目10位
+</td>
+</tr>
+
+<tr>
+<td>4組</td>
+<td>
+2R4組目3位、2R1組目4位、2R2組目5位、<br>
+1R4組目6位、1R1組目7位、1R2組目8位、1R3組目9位、1R4組目10位
+</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
     </div>
   </div>
 </details>
@@ -320,7 +389,7 @@
   <div class="content">
     <div class="kv">
       <div class="k">概要</div><div class="v">2nd Round 通過者8名による準決勝。</div>
-      <div class="k">勝ち抜け</div><div class="v">3名が勝ち抜け。</div>
+      <div class="k">勝ち抜け</div><div class="v">9○で勝ち抜け。3名がFに進出。</div>
       <div class="k">誤答ルール</div><div class="v">4×で失格（失格者は判定対象外）。</div>
       <div class="k">限定問題</div><div class="v">80問限定。</div>
       <div class="k">◆ 限定問題終了時の判定基準</div>
@@ -371,8 +440,9 @@
         ・Extra Round 勝者<br>
         ・Bonus Round 勝者
       </div>
-      <div class="k">組み分け</div><div class="v">2組に分けて実施（SF-1順位等を基に決定予定）。</div>
-      <div class="k">勝ち抜け</div><div class="v">各組1名が勝ち抜け。</div>
+      <div class="k">組み分け</div><div class="v">2組に分けて実施。SF-1の順位 → EXの勝者（1set目から順に） → Bonus Roundの勝者 の順に組み分けを選択。</div>
+      <div class="k">勝ち抜け</div><div class="v">7○で勝ち抜け。各組1名（計2名）がFに進出。</div>
+      <div class="k">誤答ルール</div><div class="v">3×で失格（失格者は判定対象外）。</div>
       <div class="k">限定問題</div><div class="v">40問限定</div>
       <div class="k">◆ 限定問題終了時の判定基準</div>
       <div class="v">
@@ -404,6 +474,8 @@
       <h3 style="margin:0 0 8px;">◆ Set①：7○3×</h3>
       <div class="kv">
         <div class="k">人数</div><div class="v">5名</div>
+        <div class="k">勝ち抜け</div><div class="v">7○で勝ち抜け。</div>
+        <div class="k">誤答ルール</div><div class="v">3×で失格（失格者は判定対象外）。</div>
         <div class="k">限定問題</div><div class="v">40問限定</div>
         <div class="k">☆付与</div><div class="v">勝者1名に☆1個</div>
         <div class="k">◆ 限定問題終了時の判定基準</div>
@@ -421,6 +493,8 @@
       <h3 style="margin:0 0 8px;">◆ Set②：7○3×</h3>
       <div class="kv">
         <div class="k">人数</div><div class="v">5名</div>
+        <div class="k">勝ち抜け</div><div class="v">7○で勝ち抜け。</div>
+    　  <div class="k">誤答ルール</div><div class="v">3×で失格（失格者は判定対象外）。</div>
         <div class="k">限定問題</div><div class="v">40問限定</div>
         <div class="k">☆付与</div><div class="v">勝者1名に☆1個</div>
         <div class="k">◆ 限定問題終了時の判定基準</div>
@@ -435,7 +509,7 @@
     </div>
 
     <div class="card" style="box-shadow:none; margin:12px 0 0; border-radius:14px;">
-      <h3 style="margin:0 0 8px;">◆ Set③：タイマン（条件付き）</h3>
+      <h3 style="margin:0 0 8px;">◆ Set③：タイマン</h3>
       <p class="note" style="margin:0 0 10px;">☆保持者が2名となった場合のみ実施。</p>
       <div class="kv">
         <div class="k">勝利条件</div><div class="v">15ポイント先取</div>
