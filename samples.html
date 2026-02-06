@@ -3,89 +3,216 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QuiZmAn 例題</title>
+<title>例題 | QuiZmAn</title>
 
 <style>
+
+:root{
+  --ink:#111;
+  --muted:#555;
+  --line:rgba(0,0,0,.10);
+}
+
 body{
-  font-family:sans-serif;
   margin:0;
-  background:#111;
-  color:white;
+  font-family: system-ui, sans-serif;
+  background:white;
+  color:var(--ink);
 }
-header{
-  padding:26px 18px;
-  text-align:center;
-  font-size:32px;
-  font-weight:bold;
-}
-main{
-  max-width:900px;
+
+.wrap{
+  width:min(900px, calc(100% - 32px));
   margin:0 auto;
-  padding:0 18px 30px;
+  padding:40px 0;
 }
-.card{
-  background:#1b1b1b;
-  border:1px solid #333;
-  border-radius:12px;
-  padding:16px;
-  margin:12px 0;
+
+h1{
+  text-align:center;
+  margin-bottom:10px;
 }
-h2{
-  margin:0 0 10px;
-  font-size:20px;
+
+.lead{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:30px;
 }
+
+/* ===== 例題カード ===== */
+
 details{
-  border:1px solid #333;
-  border-radius:10px;
-  padding:12px;
-  margin:10px 0;
-  background:#151515;
+  border:1px solid var(--line);
+  border-radius:16px;
+  margin-bottom:16px;
+  background:white;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  overflow:hidden;
 }
+
 summary{
+  padding:18px;
+  font-weight:bold;
   cursor:pointer;
-  font-weight:bold;
+  list-style:none;
 }
+
+summary::-webkit-details-marker{
+  display:none;
+}
+
+summary:hover{
+  background:rgba(0,0,0,.02);
+}
+
+.qnum{
+  font-size:13px;
+  color:#777;
+  margin-bottom:6px;
+}
+
+.question{
+  line-height:1.8;
+}
+
 .answer{
-  margin-top:10px;
-  color:#ffd166;
+  padding:18px;
+  border-top:1px solid var(--line);
+  background:rgba(0,0,0,.02);
   font-weight:bold;
 }
-.note{ color:#bbb; font-size:14px; }
-a{ color:#aaa; }
+
+.back{
+  text-align:center;
+  margin-top:30px;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>例題</header>
+<div class="wrap">
 
-<main>
+<h1>例題</h1>
 
-<div class="card">
-  <h2>例題（クリックで答え表示）</h2>
-  <p class="note">※ここはサンプル。れいやさんの例題に差し替えればOK。</p>
+<p class="lead">
+※大会で出題される問題傾向のサンプルです。<br>
+</p>
 
-  <details>
-    <summary>Q1：2026年4月5日に開催されるクイズ大会の名前は？</summary>
-    <div class="answer">A：QuiZmAn</div>
-  </details>
+<!-- 例題1 -->
+<details>
+<summary>
+<div class="qnum">例題①</div>
+<div class="question">
+栄養学が未発達な大正時代には結核と並んで二大国民病と呼ばれた、ビタミンB1の欠乏により発症する病気は何でしょう？
+</div>
+</summary>
+<div class="answer">脚気</div>
+</details>
 
-  <details>
-    <summary>Q2：会場「カムカム新蒲田」の正式名称は？</summary>
-    <div class="answer">A：新蒲田区民活動施設（カムカム新蒲田）</div>
-  </details>
+<!-- 例題2 -->
+<details>
+<summary>
+<div class="qnum">例題②</div>
+<div class="question">
+マラリア対策の一環で設立されたため、開設時の研究員には医者よりも昆虫学者の方が多かったという、今ではアメリカで幅広く疫病対策を担っている機関は何でしょう？
+</div>
+</summary>
+<div class="answer">CDC</div>
+</details>
 
-  <details>
-    <summary>Q3：クイズで「早押し」では、解答権は何で獲得する？</summary>
-    <div class="answer">A：ボタンを押して（早押しして）獲得する</div>
-  </details>
+<!-- 例題3 -->
+<details>
+<summary>
+<div class="qnum">例題③</div>
+<div class="question">
+ピアスを買う際に目にする「16G」や「18G」という表記が意味している、ピアスの軸の太さを表す単位は何でしょう？
+</div>
+</summary>
+<div class="answer">ゲージ</div>
+</details>
+
+<!-- 例題4 -->
+<details>
+<summary>
+<div class="qnum">例題④</div>
+<div class="question">
+娘のくろだかおるとの共著で『おまつりおばけ』や『はやおきおばけ』などの作品も残している、その娘をモデルにした「ルルちゃん」という女の子をたびたび作品に登場させていた絵本作家は誰でしょう？
+</div>
+</summary>
+<div class="answer">せなけいこ</div>
+</details>
+
+<!-- 例題5 -->
+<details>
+<summary>
+<div class="qnum">例題⑤</div>
+<div class="question">
+内側に向かって淡く染め出す「外ぼかし」や、虫に食われた木の葉を描くなどの表現技法が用いられる、石川県に伝わる友禅染めの様式は何でしょう？
+</div>
+</summary>
+<div class="answer">加賀友禅</div>
+</details>
+
+<!-- 例題6 -->
+<details>
+<summary>
+<div class="qnum">例題⑥</div>
+<div class="question">
+白黒カラーのモデルが「パンダ」の愛称で親しまれている、ナイキがアメリカの大学バスケットボール人気を背景に開発したバスケットシューズは何でしょう？
+</div>
+</summary>
+<div class="answer">ダンク</div>
+</details>
+
+<!-- 例題7 -->
+<details>
+<summary>
+<div class="qnum">例題⑦</div>
+<div class="question">
+独特な形状の「人形星雲」に包まれたイータ星は太陽の数十倍の質量を持つ危険な星として知られる、船の骨組みの形をモチーフにした星座は何でしょう？
+</div>
+</summary>
+<div class="answer">りゅうこつ座</div>
+</details>
+
+<!-- 例題8 -->
+<details>
+<summary>
+<div class="qnum">例題⑧</div>
+<div class="question">
+見開きいっぱいに同じ言葉がびっしりと紡がれる場面や、青いリボンがかけられたような装丁が印象的な、難病に悩まされる作家の運命を描いた有川浩の小説は何でしょう？
+</div>
+</summary>
+<div class="answer">ストーリー・セラー</div>
+</details>
+
+<!-- 例題9 -->
+<details>
+<summary>
+<div class="qnum">例題⑨</div>
+<div class="question">
+武道家としての一面も持ち合わせ、神戸に「凱風館」という道場を開いている、代表的な著作に『ためらいの倫理学』などがある思想家は誰でしょう？
+</div>
+</summary>
+<div class="answer">内田樹</div>
+</details>
+
+<!-- 例題10 -->
+<details>
+<summary>
+<div class="qnum">例題⑩</div>
+<div class="question">
+インディーズ時代の2ndミニアルバムは『エイチビー』、1stミニアルバムは『アルデンテ』というタイトルだった、人気のロックバンドは何でしょう？
+</div>
+</summary>
+<div class="answer">マカロニえんぴつ</div>
+</details>
+
+<div class="back">
+<a href="index.html">トップへ戻る</a>
+</div>
 
 </div>
 
-<p style="text-align:center; margin-top:16px;">
-  <a href="index.html">トップへ戻る</a>
-</p>
-
-</main>
 </body>
 </html>
